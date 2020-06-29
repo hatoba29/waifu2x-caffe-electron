@@ -1,0 +1,43 @@
+{
+  "name": "electron-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "App.js",
+  "scripts": {
+    "build": "del /Q /S /F .cache build dist && parcel build index.html --no-cache --no-source-maps --out-dir build --public-url ./ --target electron",
+    "tsc": "tsc",
+    "dist": "npx electron-builder --win",
+    "start": "concurrently \"cross-env BROWSER=none parcel index.html --port 3000 --out-dir build\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "cross-env": "^7.0.2",
+    "electron": "^9.0.4",
+    "sass": "^1.26.9",
+    "typescript": "^3.9.5",
+    "wait-on": "^5.0.1"
+  },
+  "dependencies": {
+    "@types/react": "^16.9.41",
+    "@types/react-dom": "^16.9.8",
+    "electron-is-dev": "^1.2.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-icons": "^3.10.0"
+  },
+  "build": {
+    "appId": "net.hatoba29.example",
+    "productName": "example",
+    "files": [
+      "build/**/*",
+      "icon.png",
+      "App.js"
+    ],
+    "win": {
+      "target": "portable"
+    }
+  }
+}
